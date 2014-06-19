@@ -178,7 +178,7 @@ namespace CheckBannedIP
                         return;
                     }
 
-                    String file_path = "C:\\good.html";
+                    String file_path = "d:\\private.html";
                     FileStream fs_http = new FileStream(file_path, FileMode.Create);
                     StreamWriter sw_http = new StreamWriter(fs_http, Encoding.UTF8);
                     foreach (TProxy p in _proGoodList)

@@ -492,7 +492,7 @@ namespace CheckBannedIP
             StreamReader reader = null;
             String data = "";
 
-            request = (HttpWebRequest)WebRequest.Create("http://23.234.228.27/person.html");
+            request = (HttpWebRequest)WebRequest.Create("http://23.234.228.27/private.html");
             //request = (HttpWebRequest)WebRequest.Create("http://108.170.31.71/test/private.html");
             request.UserAgent = "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1";
             request.AllowAutoRedirect = false;
@@ -511,7 +511,7 @@ namespace CheckBannedIP
                 data = reader.ReadToEnd();
             }
 
-            data = GetMid(data, "\n", "");
+            //data = GetMid(data, "\n", "");
 
             if (data == "")
             {
@@ -535,6 +535,7 @@ namespace CheckBannedIP
                     pr.country = pArr[2];
                     pr.username = pArr[3];
                     pr.password = pArr[4];
+                    pr.type = "HTTP";
                     proxylist.Add(pr);
                 }
                 else if (pArr.Length == 4)
@@ -558,7 +559,7 @@ namespace CheckBannedIP
                 || (_proxy.country == "BE")
                 || (_proxy.country == "BG")
                 || (_proxy.country == "CA")
-                //|| (_proxy.country == "US")
+                || (_proxy.country == "US")
                 || (_proxy.country == "CH")
                 || (_proxy.country == "DE")
                 || (_proxy.country == "DK")
@@ -791,14 +792,9 @@ namespace CheckBannedIP
                     }
                     else
                     {
-                        String ContentLength = GetMid(data, "Content-Length: ", "\r");
+                        String body = GetMid(data, "\r\n\r\n", "");
 
-                        if (ContentLength == "")
-                        {
-                            return false;
-                        }
-
-                        if (ContentLength != "0")
+                        if (body.IndexOf("http") != -1)
                         {
                             return true;
                         }
