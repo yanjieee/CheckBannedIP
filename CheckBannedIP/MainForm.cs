@@ -66,6 +66,7 @@ namespace CheckBannedIP
         private void RemoveBannedIP()
         {
             judgedCount = 0;
+            label2.Tag = 0;
             if (_accountindex < _accountList.Count)
             {
                 _accountcheck = _accountList[_accountindex];
@@ -158,7 +159,7 @@ namespace CheckBannedIP
             else
             {
                 judgedCount++;
-                
+                label1.Text = judgedCount.ToString() + "/" + _proxyList.Count.ToString();
                 if (proxy.status == "OK")
                 {
                     TProxy pro = new TProxy();  
@@ -168,8 +169,14 @@ namespace CheckBannedIP
                     pro.password = proxy.password;
                     pro.type = proxy.type;
                     _proGoodList.Add(pro);
-                }
 
+                    int tmp = (int)label2.Tag;
+                    tmp++;
+                    label2.Tag = tmp;
+                    label2.Text = tmp.ToString();
+
+                }
+               
                 if (judgedCount >= _proxyList.Count)
                 {
                     if (_proGoodList.Count == 0)
@@ -178,7 +185,9 @@ namespace CheckBannedIP
                         return;
                     }
 
-                    String file_path = "d:\\private.html";
+                    
+
+                    String file_path = "c:\\private_j.html";
                     FileStream fs_http = new FileStream(file_path, FileMode.Create);
                     StreamWriter sw_http = new StreamWriter(fs_http, Encoding.UTF8);
                     foreach (TProxy p in _proGoodList)

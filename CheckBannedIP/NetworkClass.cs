@@ -492,7 +492,7 @@ namespace CheckBannedIP
             StreamReader reader = null;
             String data = "";
 
-            request = (HttpWebRequest)WebRequest.Create("http://23.234.228.27/private.html");
+            request = (HttpWebRequest)WebRequest.Create("http://23.234.228.27/private_old.html");
             //request = (HttpWebRequest)WebRequest.Create("http://108.170.31.71/test/private.html");
             request.UserAgent = "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1";
             request.AllowAutoRedirect = false;
@@ -536,6 +536,15 @@ namespace CheckBannedIP
                     pr.username = pArr[3];
                     pr.password = pArr[4];
                     pr.type = "HTTP";
+                    proxylist.Add(pr);
+                }
+                if (pArr.Length == 6)
+                {
+                    pr.proxy = pArr[0] + ":" + pArr[1];
+                    pr.country = pArr[2];
+                    pr.username = pArr[3];
+                    pr.password = pArr[4];
+                    pr.type = pArr[5];
                     proxylist.Add(pr);
                 }
                 else if (pArr.Length == 4)
