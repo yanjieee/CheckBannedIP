@@ -492,7 +492,7 @@ namespace CheckBannedIP
             StreamReader reader = null;
             String data = "";
 
-            request = (HttpWebRequest)WebRequest.Create("http://23.234.228.27/private_old.html");
+            request = (HttpWebRequest)WebRequest.Create("http://108.170.31.71/yanjie/private_old.html");
             //request = (HttpWebRequest)WebRequest.Create("http://108.170.31.71/test/private.html");
             request.UserAgent = "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1";
             request.AllowAutoRedirect = false;

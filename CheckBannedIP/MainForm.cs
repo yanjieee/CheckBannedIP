@@ -187,7 +187,7 @@ namespace CheckBannedIP
 
                     
 
-                    String file_path = "c:\\private_j.html";
+                    String file_path = "C:\\inetpub\\wwwroot\\yanjie\\private_j.html";
                     FileStream fs_http = new FileStream(file_path, FileMode.Create);
                     StreamWriter sw_http = new StreamWriter(fs_http, Encoding.UTF8);
                     foreach (TProxy p in _proGoodList)
